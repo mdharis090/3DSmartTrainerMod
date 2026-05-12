@@ -1,0 +1,22 @@
+include: package:flutter_lints/flutter.yaml
+
+analyzer:
+  plugins:
+    - custom_lint
+  errors:
+    invalid_annotation_target: ignore
+
+linter:
+  rules:
+    prefer_const_constructors: true
+    prefer_const_widgets: true
+    avoid_print: true
+    use_key_in_widget_constructors: true
+    always_use_package_imports: true
+
+custom_lint:
+  rules:
+    # Riverpod lint rules
+    - avoid_manual_providers_as_generated_provider_dependency
+    - avoid_public_notifier_properties
+    - provider_dependencies
