@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:transformationtracker/features/dashborad/view/dashborad_screen.dart';
 import 'package:transformationtracker/features/onboarding/view/ongoing_screen.dart';
 import 'package:transformationtracker/features/splash/view/splash_screen.dart';
 
@@ -29,6 +30,10 @@ class AppRouter {
       GoRoute(path: '/ongoing',
       name: 'ongoing',
       builder: (context, state) => const OngoingScreen()
+      ),
+      GoRoute(path: '/dashborad',
+      name: 'Dashborad',
+      builder: (context, state) => const DashboardScreen(),
       )
      
     ],
