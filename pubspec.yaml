@@ -47,6 +47,12 @@ dependencies:
   logger: ^2.7.0
   cached_network_image: ^3.4.1
   flutter_native_splash: ^2.4.7
+  image_picker: ^1.2.2
+  fl_chart: ^1.2.0
+  percent_indicator: ^4.2.5
+  intl: ^0.20.2
+  path_provider: ^2.1.5
+  provider: ^6.1.5+1
 
 dev_dependencies:
   flutter_test:
