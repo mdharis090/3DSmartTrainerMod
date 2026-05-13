@@ -28,31 +28,9 @@ class AppRouter {
       ),
       GoRoute(path: Routes.ongoing,
       name: 'ongoing',
-      builder: (context, state) => const OnboardingScreen()
+      builder: (context, state) => const OngoingScreen()
       )
-      // GoRoute(
-      //   path: Routes.home,
-      //   name: 'home',
-      //   builder: (context, state) => const Scaffold(
-      //     body: Center(child: Text('🏠 Home')),
-      //   ),
-      // ),
-      // GoRoute(
-      //   path: Routes.login,
-      //   name: 'login',
-      //   builder: (context, state) => const Scaffold(
-      //     body: Center(child: Text('🔐 Login')),
-      //   ),
-      // ),
-      // Parameterized route example:
-      // GoRoute(
-      //   path: '/detail/:id',
-      //   name: 'detail',
-      //   builder: (context, state) {
-      //     final id = state.pathParameters['id']!;
-      //     return DetailPage(id: id);
-      //   },
-      // ),
+     
     ],
     errorBuilder: (context, state) => Scaffold(
       body: Center(child: Text('404 — ${state.error}')),
@@ -61,8 +39,7 @@ class AppRouter {
 
   /// Auth guard — redirect unauthenticated users to login
   static String? _guard(BuildContext context, GoRouterState state) {
-    // final isLoggedIn = sl<StorageService>().getSecure(AppConstants.tokenKey) != null;
-    // if (!isLoggedIn && state.matchedLocation != Routes.login) return Routes.login;
+   
     return null; // no redirect
   }
 }

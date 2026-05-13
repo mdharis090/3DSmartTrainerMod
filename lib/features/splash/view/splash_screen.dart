@@ -56,7 +56,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
     Future.microtask(() {
       ref.listen(splash, (previous, next) {
         next.whenData((_) {
-          context.go('/ongoing'); // replace stack
+          context.push('/ongoing'); // replace stack
         });
       });
     });
