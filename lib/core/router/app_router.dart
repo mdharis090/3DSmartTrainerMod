@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:transformationtracker/features/onboarding/view/ongoing_screen.dart';
 import 'package:transformationtracker/features/splash/view/splash_screen.dart';
 
 /// Route name constants — avoids typo bugs
 class Routes {
   Routes._();
   static const String splash  = '/splash';
- // static const String home    = '/home';
+  static const String ongoing    = '/ongoing';
   //static const String login   = '/login';
   // static const String profile = '/profile';
   // static const String detail  = '/detail/:id';
@@ -23,8 +24,12 @@ class AppRouter {
       GoRoute(
         path: Routes.splash,
         name: 'splash',
-        builder: (context, state) => SplashScreen(),
+        builder: (context, state) => const SplashScreen(),
       ),
+      GoRoute(path: Routes.ongoing,
+      name: 'ongoing',
+      builder: (context, state) => const OnboardingScreen()
+      )
       // GoRoute(
       //   path: Routes.home,
       //   name: 'home',

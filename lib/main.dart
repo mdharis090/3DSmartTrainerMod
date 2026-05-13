@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'core/constants/app_constants.dart';
-import 'core/di/injection.dart';
-import 'core/router/app_router.dart';
-import 'core/storage/storage_service.dart';
-import 'core/theme/app_theme.dart';
+import 'package:transformationtracker/core/constants/app_constants.dart';
+import 'package:transformationtracker/core/di/injection.dart';
+import 'package:transformationtracker/core/router/app_router.dart';
+import 'package:transformationtracker/core/storage/storage_service.dart';
+import 'package:transformationtracker/core/theme/app_themes.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,9 +28,8 @@ class MyApp extends ConsumerWidget {
     return MaterialApp.router(
       title:                    AppConstants.appName,
       debugShowCheckedModeBanner: false,
-      theme:                    AppTheme.light,
-      darkTheme:                AppTheme.dark,
-      themeMode:                ThemeMode.system,
+      theme:                    AppTheme.darkTheme,
+      themeMode:                ThemeMode.dark,
       routerConfig:             AppRouter.router,
     );
   }
