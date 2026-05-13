@@ -7,7 +7,7 @@ import 'package:transformationtracker/features/splash/view/splash_screen.dart';
 class Routes {
   Routes._();
   static const String splash  = '/splash';
-  static const String ongoing    = '/ongoing';
+  //static const String ongoing    = '/ongoing';
   //static const String login   = '/login';
   // static const String profile = '/profile';
   // static const String detail  = '/detail/:id';
@@ -26,7 +26,7 @@ class AppRouter {
         name: 'splash',
         builder: (context, state) => const SplashScreen(),
       ),
-      GoRoute(path: Routes.ongoing,
+      GoRoute(path: '/ongoing',
       name: 'ongoing',
       builder: (context, state) => const OngoingScreen()
       )

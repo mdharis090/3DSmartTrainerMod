@@ -49,21 +49,12 @@ class SplashScreen extends ConsumerStatefulWidget {
 class _SplashScreenState extends ConsumerState<SplashScreen> {
 
   @override
-  void initState() {
-    super.initState();
-
-    // Listen once for navigation (BEST PRACTICE)
-    Future.microtask(() {
-      ref.listen(splash, (previous, next) {
-        next.whenData((_) {
-          context.push('/ongoing'); // replace stack
-        });
-      });
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
+     ref.listen(splash, (previous, next) {
+    next.whenData((_) {
+      context.goNamed('ongoing'); // better than push for splash
+    });
+  });
     ref.watch(splash); // trigger provider
 
     return Scaffold(
