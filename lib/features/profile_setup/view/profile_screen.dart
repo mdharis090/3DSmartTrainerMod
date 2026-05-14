@@ -1,10 +1,7 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:transformationtracker/core/constants/app_color.dart';
-import 'package:transformationtracker/features/dashborad/view/dashborad_screen.dart';
 import 'package:transformationtracker/features/profile_setup/controller/on_profile_provider.dart';
 import 'package:transformationtracker/features/profile_setup/model/user_profile.dart';
 
@@ -180,13 +177,7 @@ class _ProfileSetupScreenState extends ConsumerState<ProfileSetupScreen> {
       );
 
       ref.read(userProfileProvider.notifier).saveProfile(profile);
-       context.pushNamed('Dashborad');
-      // Navigator.pushReplacement(
-      //   context,
-      //   MaterialPageRoute(
-      //     builder: (_) => const DashboardScreen(),
-      //   ),
-      //);
+        context.push('/dashborad');
     }
   }
 }
