@@ -28,7 +28,7 @@ class OngoingScreen extends StatelessWidget {
     Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-       Spacer(),
+       const Spacer(),
         const Center(
           child: Text(
             "TrainUp",
