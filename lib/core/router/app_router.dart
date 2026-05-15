@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:transformationtracker/features/auth/view/pages/login_page.dart';
 import 'package:transformationtracker/features/dashborad/view/dashborad_screen.dart';
 import 'package:transformationtracker/features/onboarding/view/ongoing_screen.dart';
+import 'package:transformationtracker/features/singup/view/singup_screen.dart';
 import 'package:transformationtracker/features/splash/view/splash_screen.dart';
 
 /// Route name constants — avoids typo bugs
@@ -34,6 +35,7 @@ class AppRouter {
       builder: (context, state) => const OngoingScreen()
       ),
       GoRoute(path:'/login', name: 'login', builder: (context, state) => const LoginScrren()),
+      GoRoute(path: '/signup', name: 'signup', builder: (context, state) => const SingupScreen()),
       GoRoute(path: '/dashborad',
       name: 'Dashborad',
       builder: (context, state) => const DashboardScreen(),

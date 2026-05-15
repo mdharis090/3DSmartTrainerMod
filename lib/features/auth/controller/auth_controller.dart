@@ -14,6 +14,9 @@ class LoginNotifier extends StateNotifier<LoginState> {
 
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  final nameController = TextEditingController();
+  final phoneController = TextEditingController();
+
 
   void togglePassword() {
     state = state.copyWith(

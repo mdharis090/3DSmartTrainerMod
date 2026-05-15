@@ -94,7 +94,7 @@ class _LoginScrrenState extends ConsumerState<LoginScrren> {
               CustomBoxButton(
                 text: "Login",
                 onTap: () {
-                  context.push('/login');
+                context.push('/signup');
                 },
               ),
               const SizedBox(height: 20),
