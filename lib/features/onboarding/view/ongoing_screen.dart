@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:transformationtracker/core/constants/app_color.dart';
 class OngoingScreen extends StatelessWidget {
   const OngoingScreen({super.key});
@@ -53,6 +54,7 @@ class OngoingScreen extends StatelessWidget {
               minimumSize: Size(double.infinity, 50),
             ),
             onPressed: () {
+              context.push('/login');
               // Navigator.push(
               //   context,
               //   MaterialPageRoute(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:transformationtracker/features/auth/view/pages/login_page.dart';
 import 'package:transformationtracker/features/dashborad/view/dashborad_screen.dart';
 import 'package:transformationtracker/features/onboarding/view/ongoing_screen.dart';
 import 'package:transformationtracker/features/splash/view/splash_screen.dart';
@@ -8,6 +9,7 @@ import 'package:transformationtracker/features/splash/view/splash_screen.dart';
 class Routes {
   Routes._();
   static const String splash  = '/splash';
+  static const String auth="/login";
   //static const String ongoing    = '/ongoing';
   //static const String login   = '/login';
   // static const String profile = '/profile';
@@ -31,6 +33,7 @@ class AppRouter {
       name: 'ongoing',
       builder: (context, state) => const OngoingScreen()
       ),
+      GoRoute(path:'/login', name: 'login', builder: (context, state) => const LoginScrren()),
       GoRoute(path: '/dashborad',
       name: 'Dashborad',
       builder: (context, state) => const DashboardScreen(),

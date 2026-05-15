@@ -1,146 +1,295 @@
-// import 'package:flutter/material.dart';
-// import 'package:flutter_riverpod/flutter_riverpod.dart';
-// import 'package:go_router/go_router.dart';
-// import '../../controller/auth_controller.dart';
-// import '../../../../core/router/app_router.dart';
-// import '../../../../core/utils/validators.dart';
-// import '../../../../core/utils/extensions.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:transformationtracker/core/constants/app_color.dart';
+import 'package:transformationtracker/core/utils/textstyle.dart';
 
-// class LoginPage extends ConsumerStatefulWidget {
-//   const LoginPage({super.key});
+class LoginScrren extends StatefulWidget {
+  const LoginScrren({super.key});
+
+  @override
+  State<LoginScrren> createState() => _LoginScrrenState();
+}
+
+class _LoginScrrenState extends State<LoginScrren> {
+  @override
+  Widget build(BuildContext context) {
+    final TextEditingController emailController = TextEditingController();
+    final TextEditingController passwordController = TextEditingController();
+
+    bool isPasswordHidden = true;
+    return Scaffold(
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Column(
+            
+            crossAxisAlignment: CrossAxisAlignment.center,
+          
+            children: [
+              const SizedBox(height: 50),
+          
+                // Title
+                Center(
+                  child: Text(
+                    'TrainUp',
+                    style: GoogleFonts.inter(
+                      fontSize: 26,
+                      fontWeight: FontWeight.bold,
+                      color: AppColors.black,
+                    ),
+                  ),
+                ),
+               const SizedBox(height: 23),
+
+              // Logo
+              Image.asset(
+                'assets/icon.png',
+                height: 90,
+                width: 90,
+                color: AppColors.background1
+              ),
+      _loginTextFields(title: 'Email', hintText: 'Enter the email', controller: emailController),
+      
+              const SizedBox(height: 20),
+
+              // Password Field
+              _loginTextFields(
+                title: 'Password',
+                hintText: 'Enter your password',
+                controller: passwordController,
+                isPassword: true,
+                obscureText: isPasswordHidden,
+                onTogglePassword: () {
+                  setState(() {
+                    isPasswordHidden = !isPasswordHidden;
+                  });
+                },
+              ),
+                 const SizedBox(height: 15),
+
+//               // Remember + Forgot
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      Checkbox(value: false, onChanged: (v) {
+                        setState(() {
+                        
+                          
+                        });
+                      }),
+                      const Text("Remember Me"),
+                    ],
+                  ),
+                  const Text(
+                    "Forgot Password?",
+                    style: TextStyle(color: AppColors.background1),
+                  )
+                ],
+              ),
+
+              const SizedBox(height: 20),
+              
+//               // Login Button
+              Container(
+                width: double.infinity,
+                height: 50,
+                decoration: BoxDecoration(
+                  color: AppColors.background1,
+                  borderRadius: BorderRadius.circular(10),
+                  boxShadow: [
+                    BoxShadow(
+                      color: AppColors.background1.withOpacity(0.3),
+                      blurRadius: 8,
+                      offset: const Offset(0, 4),
+                    )
+                  ],
+                ),
+                child: const Center(
+                  child: Text(
+                    "Login",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
+
+              const SizedBox(height: 20),
+
+              // Signup
+              const Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("Don't have an account? "),
+                  Text(
+                    "Sign Up",
+                    style: TextStyle(
+                      color: AppColors.black,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  )
+                ],
+              )
+
+
+
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+// import 'package:flutter/material.dart';
+// import 'package:flutter/services.dart';
+// import 'package:google_fonts/google_fonts.dart';
+// import 'package:transformationtracker/core/constants/app_color.dart';
+
+// class LoginScreen extends StatefulWidget {
+//   const LoginScreen({super.key});
 
 //   @override
-//   ConsumerState<LoginPage> createState() => _LoginPageState();
+//   State<LoginScreen> createState() => _LoginScreenState();
 // }
 
-// class _LoginPageState extends ConsumerState<LoginPage> {
-//   final _formKey    = GlobalKey<FormState>();
-//   final _emailCtrl  = TextEditingController();
-//   final _passCtrl   = TextEditingController();
-//   bool  _obscure    = true;
+// class _LoginScreenState extends State<LoginScreen> {
+//   final TextEditingController emailController = TextEditingController();
+//   final TextEditingController passwordController = TextEditingController();
 
-//   @override
-//   void dispose() {
-//     _emailCtrl.dispose();
-//     _passCtrl.dispose();
-//     super.dispose();
-//   }
-
-//   Future<void> _submit() async {
-//     if (!_formKey.currentState!.validate()) return;
-//     final success = await ref.read(authControllerProvider.notifier)
-//         .login(_emailCtrl.text.trim(), _passCtrl.text);
-//     if (success && mounted) context.go(Routes.home);
-//   }
+//   bool isPasswordHidden = true;
 
 //   @override
 //   Widget build(BuildContext context) {
-//     final state = ref.watch(authControllerProvider);
-
-//     // Show error snackbar when error changes
-//     ref.listen<AuthState>(authControllerProvider, (prev, next) {
-//       if (next.error != null && next.error != prev?.error) {
-//         context.showSnackBar(next.error!, isError: true);
-//       }
-//     });
-
 //     return Scaffold(
+//       backgroundColor: AppColors.background,
 //       body: SafeArea(
-//         child: Center(
-//           child: SingleChildScrollView(
-//             padding: const EdgeInsets.symmetric(horizontal: 24),
-//             child: Form(
-//               key: _formKey,
-//               child: Column(
-//                 crossAxisAlignment: CrossAxisAlignment.stretch,
+//         child: SingleChildScrollView(
+//           padding: const EdgeInsets.symmetric(horizontal: 20),
+//           child: Column(
+//             crossAxisAlignment: CrossAxisAlignment.center,
+//             children: [
+//               const SizedBox(height: 40),
+
+//               // Title
+//               Text(
+//                 'TrainUp',
+//                 style: GoogleFonts.inter(
+//                   fontSize: 26,
+//                   fontWeight: FontWeight.bold,
+//                   color: AppColors.black,
+//                 ),
+//               ),
+
+//               const SizedBox(height: 10),
+
+//               // Logo
+//               Image.asset(
+//                 'assets/icon.png',
+//                 height: 90,
+//                 width: 90,
+//                 color: AppColors.primary,
+//               ),
+
+//               const SizedBox(height: 40),
+
+//               // Email Field
+//               _loginTextFields(
+//                 title: 'Email',
+//                 hintText: 'Enter your email',
+//                 controller: emailController,
+                
+//               ),
+
+//               const SizedBox(height: 20),
+
+//               // Password Field
+//               _loginTextFields(
+//                 title: 'Password',
+//                 hintText: 'Enter your password',
+//                 controller: passwordController,
+//                 isPassword: true,
+//                 obscureText: isPasswordHidden,
+//                 onTogglePassword: () {
+//                   setState(() {
+//                     isPasswordHidden = !isPasswordHidden;
+//                   });
+//                 },
+//               ),
+
+//               const SizedBox(height: 15),
+
+//               // Remember + Forgot
+//               Row(
+//                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
 //                 children: [
-//                   Text('Welcome Back 👋',
-//                       style: context.textTheme.headlineMedium?.copyWith(
-//                         fontWeight: FontWeight.bold,
-//                       )),
-//                   8.h,
-//                   Text('Sign in to continue',
-//                       style: context.textTheme.bodyMedium
-//                           ?.copyWith(color: Colors.grey)),
-//                   32.h,
-//                   TextFormField(
-//                     controller: _emailCtrl,
-//                     keyboardType: TextInputType.emailAddress,
-//                     decoration: const InputDecoration(
-//                       labelText: 'Email',
-//                       prefixIcon: Icon(Icons.email_outlined),
-//                     ),
-//                     validator: Validators.email,
+//                   Row(
+//                     children: [
+//                       Checkbox(value: false, onChanged: (v) {}),
+//                       const Text("Remember Me"),
+//                     ],
 //                   ),
-//                   16.h,
-//                   TextFormField(
-//                     controller: _passCtrl,
-//                     obscureText: _obscure,
-//                     decoration: InputDecoration(
-//                       labelText: 'Password',
-//                       prefixIcon: const Icon(Icons.lock_outlined),
-//                       suffixIcon: IconButton(
-//                         icon: Icon(_obscure
-//                             ? Icons.visibility_outlined
-//                             : Icons.visibility_off_outlined),
-//                         onPressed: () => setState(() => _obscure = !_obscure),
-//                       ),
-//                     ),
-//                     validator: Validators.password,
-//                   ),
-//                   24.h,
-//                   ElevatedButton(
-//                     onPressed: state.isLoading ? null : _submit,
-//                     child: state.isLoading
-//                         ? const SizedBox.square(
-//                             dimension: 20,
-//                             child: CircularProgressIndicator(strokeWidth: 2))
-//                         : const Text('Login'),
-//                   ),
+//                   const Text(
+//                     "Forgot Password?",
+//                     style: TextStyle(color: AppColors.primary),
+//                   )
 //                 ],
 //               ),
-//             ),
+
+//               const SizedBox(height: 20),
+
+//               // Login Button
+//               Container(
+//                 width: double.infinity,
+//                 height: 50,
+//                 decoration: BoxDecoration(
+//                   color: AppColors.primary,
+//                   borderRadius: BorderRadius.circular(10),
+//                   boxShadow: [
+//                     BoxShadow(
+//                       color: AppColors.primary.withOpacity(0.3),
+//                       blurRadius: 8,
+//                       offset: const Offset(0, 4),
+//                     )
+//                   ],
+//                 ),
+//                 child: const Center(
+//                   child: Text(
+//                     "Login",
+//                     style: TextStyle(
+//                       color: Colors.white,
+//                       fontWeight: FontWeight.bold,
+//                     ),
+//                   ),
+//                 ),
+//               ),
+
+//               const SizedBox(height: 20),
+
+//               // Signup
+//               const Row(
+//                 mainAxisAlignment: MainAxisAlignment.center,
+//                 children: [
+//                   Text("Don't have an account? "),
+//                   Text(
+//                     "Sign Up",
+//                     style: TextStyle(
+//                       color: AppColors.primary,
+//                       fontWeight: FontWeight.bold,
+//                     ),
+//                   )
+//                 ],
+//               )
+//             ],
 //           ),
 //         ),
 //       ),
 //     );
 //   }
 // }
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:transformationtracker/core/constants/app_color.dart';
-
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
-
-  @override
-  State<LoginScreen> createState() => _LoginScreenState();
-}
-
-class _LoginScreenState extends State<LoginScreen> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.background,
-      body: Column(
-        children: [
-          const Text('Train Up',style: TextStyle(fontSize: 18,color: AppColors.black),),
-          const Center(
-            child: Image(image: AssetImage('icon.png'),height: 100,width: 100,color: AppColors.background1,),
-          ),
-          _loginTextFields(
-            title: 'Email',
-             hintText: 'Enter your email',
-             controller: TextEditingController(),
-             obscureText: false,
-             isNumber: false,
-          ),
-        ],
-      ),
-    );
-  }
-}
 
  Widget _loginTextFields({
   
@@ -160,12 +309,14 @@ class _LoginScreenState extends State<LoginScreen> {
           style: GoogleFonts.inter(
             fontSize: 16,
             fontWeight: FontWeight.w600,
+            color: AppColors.black
           ),
         ),
         const SizedBox(height: 10),
         TextField(
           style: GoogleFonts.inter(
             fontSize: 14,
+            color: AppColors.black
           ),
           cursorColor: AppColors.primary,
           controller: controller,
@@ -174,6 +325,8 @@ class _LoginScreenState extends State<LoginScreen> {
           inputFormatters:
               isNumber ? [FilteringTextInputFormatter.digitsOnly] : [],
           decoration: InputDecoration(
+    filled: true,
+    fillColor: Colors.white.withOpacity(0.05),
             isDense: true,
             hintText: hintText,
             hintStyle: const TextStyle(
