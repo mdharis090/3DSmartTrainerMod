@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
-import 'dio_client.dart';
-import '../error/app_error.dart';
-import '../error/app_exception.dart';
+import 'package:transformationtracker/core/network/dio_client.dart';
+import 'package:transformationtracker/core/error/app_error.dart';
+
 
 /// Thin wrapper around Dio that returns AppResult<T> instead of throwing.
 /// Controllers call this — never call Dio directly from a controller.
