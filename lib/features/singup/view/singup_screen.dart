@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:transformationtracker/core/utils/custom_app_bar.dart';
+import 'package:go_router/go_router.dart';
 import 'package:transformationtracker/core/utils/custom_button.dart';
 import 'package:transformationtracker/features/auth/controller/auth_controller.dart';
 import 'package:transformationtracker/features/auth/view/widgets/login_widget.dart';
@@ -19,6 +19,20 @@ class _SingupScreenState extends ConsumerState<SingupScreen> {
     // ignore: unused_local_variable
     final state = ref.watch(loginProvider);
     return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        centerTitle: true,
+        backgroundColor: Colors.white,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios, color: Colors.blue),
+          onPressed: () => Navigator.pop(context),
+        ),
+        title: const Text(
+          'Sign up',
+          style: TextStyle(color: Colors.black),
+        ),
+        elevation: 0,
+      ),
   body: SafeArea(
     child: Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -28,7 +42,7 @@ class _SingupScreenState extends ConsumerState<SingupScreen> {
           children: [
             const SizedBox(height: 10),
 
-            const CustomRow(customText: "Sign up"),
+           // const CustomRow(customText: "Sign up"),
 
             const SizedBox(height: 20),
 
@@ -55,7 +69,7 @@ class _SingupScreenState extends ConsumerState<SingupScreen> {
               isNumber: true,
             ),
 
-            const SizedBox(height: 15),
+            const SizedBox(height: 40),
 
             loginTextFields(
               title: 'Password',
@@ -70,7 +84,9 @@ class _SingupScreenState extends ConsumerState<SingupScreen> {
 
             CustomBoxButton(
               text: "Sign up",
-              onTap: () {},
+              onTap: () {
+                context.push('/forgetpassword');
+              },
             ),
 
             const SizedBox(height: 20),
