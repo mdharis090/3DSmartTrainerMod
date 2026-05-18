@@ -6,7 +6,8 @@ import 'package:transformationtracker/features/forget_password/view/forgetpasswo
 import 'package:transformationtracker/features/onboarding/view/ongoing_screen.dart';
 import 'package:transformationtracker/features/singup/view/singup_screen.dart';
 import 'package:transformationtracker/features/splash/view/splash_screen.dart';
-import 'package:transformationtracker/features/verfication/view/reset_screen.dart';
+import 'package:transformationtracker/features/verfication/view/resest_screen.dart';
+import 'package:transformationtracker/features/verfication/view/verfication_screen.dart';
 
 /// Route name constants — avoids typo bugs
 class Routes {
@@ -53,6 +54,7 @@ class AppRouter {
         builder: (context, state) => const ForgetPasswordScreen(),
       ),
       GoRoute(path: '/reset',name: 'reset',builder: (context,state)=>const verficationScreen()),
+      GoRoute(path: '/restscreen',name: 'resest',builder: (context,state)=>const ResestScreen()),
       GoRoute(
         path: '/dashborad',
         name: 'Dashborad',

@@ -3,7 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:transformationtracker/core/constants/app_color.dart';
 import 'package:transformationtracker/core/utils/custom_button.dart';
-import 'package:transformationtracker/features/verfication/controller/reset_provider.dart';
+import 'package:transformationtracker/features/verfication/controller/verfication_provider.dart';
+
 class verficationScreen extends ConsumerWidget {
   const verficationScreen({super.key});
   @override
@@ -103,7 +104,7 @@ class verficationScreen extends ConsumerWidget {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('Verifying code...')),
                   );
-                  context.push('/forgetpassword');
+                  context.push('/restscreen');
                 },
               ),
 
