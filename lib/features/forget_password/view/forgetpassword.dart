@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:transformationtracker/core/utils/custom_button.dart';
+import 'package:transformationtracker/core/utils/row_cutome_button.dart';
 import 'package:transformationtracker/features/auth/controller/auth_controller.dart';
 import 'package:transformationtracker/features/auth/view/widgets/login_widget.dart';
 
@@ -8,15 +9,16 @@ class ForgetPasswordScreen extends ConsumerStatefulWidget {
   const ForgetPasswordScreen({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _ForgetPasswordScreenState();
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      _ForgetPasswordScreenState();
 }
 
 class _ForgetPasswordScreenState extends ConsumerState<ForgetPasswordScreen> {
-   @override
+  @override
   Widget build(BuildContext context) {
     final notifier = ref.watch(loginProvider.notifier);
     return Scaffold(
-       backgroundColor: Colors.white,
+      backgroundColor: Colors.white,
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: Colors.white,
@@ -41,15 +43,19 @@ class _ForgetPasswordScreenState extends ConsumerState<ForgetPasswordScreen> {
                 hintText: 'Enter your email',
                 controller: notifier.emailController,
               ),
-              
+
               const Spacer(),
 
-            CustomBoxButton(
-              text: "Sign up",
-              onTap: () {},
-            ),
+              DualButtonRow(
+                onCancel: () {
+                  Navigator.pop(context);
+                },
+                onContinue: () {
+                  print("Continue clicked");
+                },
+              ),
 
-            const SizedBox(height: 20),
+              const SizedBox(height: 20),
             ],
           ),
         ),
