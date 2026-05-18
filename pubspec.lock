@@ -491,6 +491,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_unit_ruler:
+    dependency: "direct dev"
+    description:
+      name: flutter_unit_ruler
+      sha256: "806e65a717150d7bd58094744cb401cadf90a71f4753cf59ea7d7cd94354e694"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.1"
   flutter_web_plugins:
     dependency: transitive
     description: flutter

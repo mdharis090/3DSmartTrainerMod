@@ -1,6 +1,10 @@
 import 'package:flutter_riverpod/legacy.dart';
 import 'package:transformationtracker/features/personal_name/model/user_data_model.dart';
 
+final userDataProvider = StateNotifierProvider<UserDataNotifier, UserData>(
+  (ref) => UserDataNotifier(),
+);
+
 class UserDataNotifier extends StateNotifier<UserData> {
   UserDataNotifier()
       : super(UserData(
@@ -26,7 +30,3 @@ class UserDataNotifier extends StateNotifier<UserData> {
     state = state.copyWith(weight: weight);
   }
 }
-
-final userDataProvider = StateNotifierProvider<UserDataNotifier, UserData>(
-  (ref) => UserDataNotifier(),
-);

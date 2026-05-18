@@ -80,7 +80,7 @@ class _ResestScreenState extends ConsumerState<ResestScreen> {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('Contine password...')),
                   );
-                  context.push('');
+                  context.push('/personalDeatil');
                 },
               ),
             ],

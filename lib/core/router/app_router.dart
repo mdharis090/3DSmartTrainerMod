@@ -4,6 +4,8 @@ import 'package:transformationtracker/features/auth/view/pages/login_page.dart';
 import 'package:transformationtracker/features/dashborad/view/dashborad_screen.dart';
 import 'package:transformationtracker/features/forget_password/view/forgetpassword.dart';
 import 'package:transformationtracker/features/onboarding/view/ongoing_screen.dart';
+import 'package:transformationtracker/features/personal_name/view/personal_deatil_screen.dart';
+import 'package:transformationtracker/features/profile_setup/view/profile_screen.dart';
 import 'package:transformationtracker/features/singup/view/singup_screen.dart';
 import 'package:transformationtracker/features/splash/view/splash_screen.dart';
 import 'package:transformationtracker/features/verfication/view/resest_screen.dart';
@@ -53,14 +55,26 @@ class AppRouter {
         name: 'forgetpassword',
         builder: (context, state) => const ForgetPasswordScreen(),
       ),
-      GoRoute(path: '/reset',name: 'reset',builder: (context,state)=>const verficationScreen()),
-      GoRoute(path: '/restscreen',name: 'resest',builder: (context,state)=>const ResestScreen()),
+      GoRoute(
+        path: '/reset',
+        name: 'reset',
+        builder: (context, state) => const verficationScreen(),
+      ),
+      GoRoute(
+        path: '/restscreen',
+        name: 'resest',
+        builder: (context, state) => const ResestScreen(),
+      ),
+      GoRoute(
+        path: '/personalDeatil',
+        name: 'personalDeatil',
+        builder: (context, state) => const PersonalDetaileScreen(),
+      ),
       GoRoute(
         path: '/dashborad',
         name: 'Dashborad',
         builder: (context, state) => const DashboardScreen(),
       ),
-
     ],
     errorBuilder: (context, state) =>
         Scaffold(body: Center(child: Text('404 — ${state.error}'))),
