@@ -4,6 +4,7 @@ import 'package:transformationtracker/features/auth/view/pages/login_page.dart';
 import 'package:transformationtracker/features/dashborad/view/dashborad_screen.dart';
 import 'package:transformationtracker/features/forget_password/view/forgetpassword.dart';
 import 'package:transformationtracker/features/onboarding/view/ongoing_screen.dart';
+import 'package:transformationtracker/features/personal_name/view/chose_your_goal.dart';
 import 'package:transformationtracker/features/personal_name/view/personal_deatil_screen.dart';
 import 'package:transformationtracker/features/profile_setup/view/profile_screen.dart';
 import 'package:transformationtracker/features/singup/view/singup_screen.dart';
@@ -69,6 +70,11 @@ class AppRouter {
         path: '/personalDeatil',
         name: 'personalDeatil',
         builder: (context, state) => const PersonalDetaileScreen(),
+      ),
+      GoRoute(
+        path: '/slectgoal',
+        name: 'slectgoal',
+        builder: (context, state) => const GoalSlectionScreen(),
       ),
       GoRoute(
         path: '/dashborad',
