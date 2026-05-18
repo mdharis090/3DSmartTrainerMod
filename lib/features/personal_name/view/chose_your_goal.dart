@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class GoalSlectionScreen extends StatefulWidget {
   const GoalSlectionScreen({super.key});
@@ -95,6 +96,7 @@ class _GoalSlectionScreenState extends State<GoalSlectionScreen> {
                         .where((entry) => entry.value)
                         .map((entry) => entry.key)
                         .toList();
+                        context.push('/homescreen');
                     
                     print("Selected Goals: $selectedGoals");
                   },

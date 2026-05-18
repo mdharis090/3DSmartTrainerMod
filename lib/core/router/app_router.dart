@@ -3,10 +3,10 @@ import 'package:go_router/go_router.dart';
 import 'package:transformationtracker/features/auth/view/pages/login_page.dart';
 import 'package:transformationtracker/features/dashborad/view/dashborad_screen.dart';
 import 'package:transformationtracker/features/forget_password/view/forgetpassword.dart';
+import 'package:transformationtracker/features/home/view/pages/home_page.dart';
 import 'package:transformationtracker/features/onboarding/view/ongoing_screen.dart';
 import 'package:transformationtracker/features/personal_name/view/chose_your_goal.dart';
 import 'package:transformationtracker/features/personal_name/view/personal_deatil_screen.dart';
-import 'package:transformationtracker/features/profile_setup/view/profile_screen.dart';
 import 'package:transformationtracker/features/singup/view/singup_screen.dart';
 import 'package:transformationtracker/features/splash/view/splash_screen.dart';
 import 'package:transformationtracker/features/verfication/view/resest_screen.dart';
@@ -75,6 +75,11 @@ class AppRouter {
         path: '/slectgoal',
         name: 'slectgoal',
         builder: (context, state) => const GoalSlectionScreen(),
+      ),
+      GoRoute(
+        path: '/homescreen',
+        name: 'homescreen',
+        builder: (context, state) => const HomeScreen(),
       ),
       GoRoute(
         path: '/dashborad',
