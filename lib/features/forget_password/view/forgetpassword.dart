@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:transformationtracker/core/utils/custom_button.dart';
+import 'package:go_router/go_router.dart';
+
 import 'package:transformationtracker/core/utils/row_cutome_button.dart';
 import 'package:transformationtracker/features/auth/controller/auth_controller.dart';
 import 'package:transformationtracker/features/auth/view/widgets/login_widget.dart';
@@ -51,7 +52,8 @@ class _ForgetPasswordScreenState extends ConsumerState<ForgetPasswordScreen> {
                   Navigator.pop(context);
                 },
                 onContinue: () {
-                  print("Continue clicked");
+                 context.push('/reset');
+                  
                 },
               ),
 

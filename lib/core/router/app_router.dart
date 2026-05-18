@@ -6,12 +6,13 @@ import 'package:transformationtracker/features/forget_password/view/forgetpasswo
 import 'package:transformationtracker/features/onboarding/view/ongoing_screen.dart';
 import 'package:transformationtracker/features/singup/view/singup_screen.dart';
 import 'package:transformationtracker/features/splash/view/splash_screen.dart';
+import 'package:transformationtracker/features/verfication/view/reset_screen.dart';
 
 /// Route name constants — avoids typo bugs
 class Routes {
   Routes._();
-  static const String splash  = '/splash';
-  static const String auth="/login";
+  static const String splash = '/splash';
+  static const String auth = "/login";
   //static const String ongoing    = '/ongoing';
   //static const String login   = '/login';
   // static const String profile = '/profile';
@@ -31,27 +32,40 @@ class AppRouter {
         name: 'splash',
         builder: (context, state) => const SplashScreen(),
       ),
-      GoRoute(path: '/ongoing',
-      name: 'ongoing',
-      builder: (context, state) => const OngoingScreen()
+      GoRoute(
+        path: '/ongoing',
+        name: 'ongoing',
+        builder: (context, state) => const OngoingScreen(),
       ),
-      GoRoute(path:'/login', name: 'login', builder: (context, state) => const LoginScrren()),
-      GoRoute(path: '/signup', name: 'signup', builder: (context, state) => const SingupScreen()),
-      GoRoute(path: '/forgetpassword', name: 'forgetpassword', builder: (context, state) => const ForgetPasswordScreen()),
-      GoRoute(path: '/dashborad',
-      name: 'Dashborad',
-      builder: (context, state) => const DashboardScreen(),
-      )
-     
+      GoRoute(
+        path: '/login',
+        name: 'login',
+        builder: (context, state) => const LoginScrren(),
+      ),
+      GoRoute(
+        path: '/signup',
+        name: 'signup',
+        builder: (context, state) => const SingupScreen(),
+      ),
+      GoRoute(
+        path: '/forgetpassword',
+        name: 'forgetpassword',
+        builder: (context, state) => const ForgetPasswordScreen(),
+      ),
+      GoRoute(path: '/reset',name: 'reset',builder: (context,state)=>const ResetPasswordScreen()),
+      GoRoute(
+        path: '/dashborad',
+        name: 'Dashborad',
+        builder: (context, state) => const DashboardScreen(),
+      ),
+
     ],
-    errorBuilder: (context, state) => Scaffold(
-      body: Center(child: Text('404 — ${state.error}')),
-    ),
+    errorBuilder: (context, state) =>
+        Scaffold(body: Center(child: Text('404 — ${state.error}'))),
   );
 
   /// Auth guard — redirect unauthenticated users to login
   static String? _guard(BuildContext context, GoRouterState state) {
-   
     return null; // no redirect
   }
 }
