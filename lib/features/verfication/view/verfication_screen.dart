@@ -1,21 +1,16 @@
-// ignore_for_file: deprecated_member_use
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:transformationtracker/core/constants/app_color.dart';
 import 'package:transformationtracker/core/utils/custom_button.dart';
 import 'package:transformationtracker/features/verfication/controller/reset_provider.dart';
-
-class ResetPasswordScreen extends ConsumerWidget {
-  const ResetPasswordScreen({super.key});
-
+class verficationScreen extends ConsumerWidget {
+  const verficationScreen({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final timerState = ref.watch(timerProvider);
     final canResend = timerState.canResend;
     final remaining = timerState.remainingSeconds;
-
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -31,7 +26,6 @@ class ResetPasswordScreen extends ConsumerWidget {
         ),
         elevation: 0,
       ),
-
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24.0),
@@ -44,9 +38,7 @@ class ResetPasswordScreen extends ConsumerWidget {
                   "We've Sent You A Code To Rest Your Password",
                   style: TextStyle(fontSize: 16, color: AppColors.text),
                 ),
-            
-                const SizedBox(height: 32),
-            
+                        const SizedBox(height: 32),
                 // Countdown display: "00 - 06 Sec" format
                 const SizedBox(height: 32),
                 TextField(
@@ -74,11 +66,14 @@ class ResetPasswordScreen extends ConsumerWidget {
                     ),
                   ),
                 ),
-               
+
                 const SizedBox(height: 24),
                 Row(
                   children: [
-                     const Icon(Icons.timer_outlined, color: AppColors.background1),
+                    const Icon(
+                      Icons.timer_outlined,
+                      color: AppColors.background1,
+                    ),
                     const SizedBox(width: 8),
                     Text(
                       "${remaining.toString().padLeft(2, '0')} - 06 Sec",
@@ -90,59 +85,56 @@ class ResetPasswordScreen extends ConsumerWidget {
                     ),
                   ],
                 ),
-        
               ],
             ),
           ),
         ),
       ),
       bottomNavigationBar: SafeArea(
-  child: Padding(
-    padding: const EdgeInsets.all(16.0),
-    child: Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        
-        //  Verify Button
-        CustomBoxButton(
-          text: "Verify",
-          onTap: () {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('Verifying code...')),
-            );
-            context.push('/forgetpassword');
-          },
-        ),
-
-        const SizedBox(height: 12),
-
-        //  Resend Text
-        Center(
-          child: Row(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Text("Don't Receive Code ? "),
-              GestureDetector(
-                onTap: canResend
-                    ? () => ref.read(timerProvider.notifier).resendCode()
-                    : null,
-                child: Text(
-                  'Resend',
-                  style: TextStyle(
-                    color: canResend ? Colors.blue : Colors.grey,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
-                  ),
+              //  Verify Button
+              CustomBoxButton(
+                text: "Verify",
+                onTap: () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Verifying code...')),
+                  );
+                  context.push('/forgetpassword');
+                },
+              ),
+
+              const SizedBox(height: 12),
+
+              //  Resend Text
+              Center(
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Text("Don't Receive Code ? "),
+                    GestureDetector(
+                      onTap: canResend
+                          ? () => ref.read(timerProvider.notifier).resendCode()
+                          : null,
+                      child: Text(
+                        'Resend',
+                        style: TextStyle(
+                          color: canResend ? Colors.blue : Colors.grey,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],
           ),
         ),
-      ],
-    ),
-  ),
-),
-
+      ),
     );
   }
 }

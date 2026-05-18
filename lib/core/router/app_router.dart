@@ -52,7 +52,7 @@ class AppRouter {
         name: 'forgetpassword',
         builder: (context, state) => const ForgetPasswordScreen(),
       ),
-      GoRoute(path: '/reset',name: 'reset',builder: (context,state)=>const ResetPasswordScreen()),
+      GoRoute(path: '/reset',name: 'reset',builder: (context,state)=>const verficationScreen()),
       GoRoute(
         path: '/dashborad',
         name: 'Dashborad',
