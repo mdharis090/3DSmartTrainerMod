@@ -4,6 +4,7 @@ import 'package:transformationtracker/features/auth/view/pages/login_page.dart';
 import 'package:transformationtracker/features/dashborad/view/dashborad_screen.dart';
 import 'package:transformationtracker/features/forget_password/view/forgetpassword.dart';
 import 'package:transformationtracker/features/home/view/pages/home_page.dart';
+import 'package:transformationtracker/features/home/view/widgets/seach_Screen.dart';
 import 'package:transformationtracker/features/onboarding/view/ongoing_screen.dart';
 import 'package:transformationtracker/features/personal_name/view/chose_your_goal.dart';
 import 'package:transformationtracker/features/personal_name/view/personal_deatil_screen.dart';
@@ -85,6 +86,10 @@ class AppRouter {
         path: '/dashborad',
         name: 'Dashborad',
         builder: (context, state) => const DashboardScreen(),
+      ),
+      GoRoute(
+        path: '/search',
+        builder: (context, state) => const SearchScreen(),
       ),
     ],
     errorBuilder: (context, state) =>

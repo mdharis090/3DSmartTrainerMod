@@ -1,10 +1,5 @@
-
-// ─────────────────────────────────────────
-//  HOME SCREEN
-// ─────────────────────────────────────────
 import 'package:flutter/material.dart';
-import 'package:transformationtracker/core/constants/app_color.dart';
-
+import 'package:go_router/go_router.dart';
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -51,10 +46,10 @@ class _HomeBody extends StatelessWidget {
         children: [
           const SizedBox(height: 16),
           // ── Top bar ──────────────────────────────
-          _TopBar(),
+          const _TopBar(),
           const SizedBox(height: 16),
           // ── Search ───────────────────────────────
-          _SearchBar(),
+          const _SearchBar(),
           const SizedBox(height: 20),
           // ── Level / target card ──────────────────
           const _TargetCard(),
@@ -76,16 +71,15 @@ class _HomeBody extends StatelessWidget {
     );
   }
 }
-
-// ─────────────────────────────────────────
-//  TOP BAR
-// ─────────────────────────────────────────
 class _TopBar extends StatelessWidget {
+  const _TopBar();
+
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
+        // LEFT: Greeting
         const Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -107,47 +101,11 @@ class _TopBar extends StatelessWidget {
             ),
           ],
         ),
+
+        // RIGHT: Search + Notification
         Row(
           children: [
-            // Streak chip
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(20),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.06),
-                    blurRadius: 8,
-                    offset: const Offset(0, 2),
-                  )
-                ],
-              ),
-              child: const Row(
-                children: [
-                  Icon(Icons.local_fire_department,
-                      color: Color(0xFFFF6B35), size: 16),
-                  SizedBox(width: 4),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text('Streak',
-                          style: TextStyle(
-                              fontSize: 10,
-                              color: Color(0xFF9A9AB0),
-                              fontWeight: FontWeight.w500)),
-                      Text('1 Days',
-                          style: TextStyle(
-                              fontSize: 11,
-                              fontWeight: FontWeight.w700,
-                              color: Color(0xFF1A1A2E))),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(width: 10),
-            // Bell
+            // 🔍 Search Icon Button
             Container(
               width: 38,
               height: 38,
@@ -159,28 +117,73 @@ class _TopBar extends StatelessWidget {
                     color: Colors.black.withOpacity(0.06),
                     blurRadius: 8,
                     offset: const Offset(0, 2),
-                  )
+                  ),
                 ],
               ),
-              child: Stack(
-                children: [
-                  const Center(
-                    child: Icon(Icons.notifications_outlined,
-                        color: Color(0xFF1A1A2E), size: 20),
+              child: IconButton(
+                padding: EdgeInsets.zero,
+                icon: const Icon(
+                  Icons.search,
+                  size: 20,
+                  color: Color(0xFF1A1A2E),
+                ),
+                onPressed: () {
+                    context.push('/search');
+                },
+              ),
+            ),
+
+            const SizedBox(width: 10),
+
+            // 🔔 Notification Button
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const NotificationScreen(),
                   ),
-                  Positioned(
-                    top: 7,
-                    right: 7,
-                    child: Container(
-                      width: 8,
-                      height: 8,
-                      decoration: const BoxDecoration(
-                        color: Color(0xFFFF3B30),
-                        shape: BoxShape.circle,
+                );
+              },
+              child: Container(
+                width: 38,
+                height: 38,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  shape: BoxShape.circle,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.06),
+                      blurRadius: 8,
+                      offset: const Offset(0, 2),
+                    ),
+                  ],
+                ),
+                child: Stack(
+                  children: [
+                    const Center(
+                      child: Icon(
+                        Icons.notifications_outlined,
+                        size: 20,
+                        color: Color(0xFF1A1A2E),
                       ),
                     ),
-                  )
-                ],
+
+                    // 🔴 Badge
+                    Positioned(
+                      top: 7,
+                      right: 7,
+                      child: Container(
+                        width: 8,
+                        height: 8,
+                        decoration: const BoxDecoration(
+                          color: Colors.red,
+                          shape: BoxShape.circle,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ],
@@ -191,40 +194,190 @@ class _TopBar extends StatelessWidget {
 }
 
 // ─────────────────────────────────────────
-//  SEARCH BAR
+//  TOP BAR
 // ─────────────────────────────────────────
+// class _TopBar extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Row(
+//       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//       children: [
+//         const Column(
+//           crossAxisAlignment: CrossAxisAlignment.start,
+//           children: [
+//             Text(
+//               'Hi, Rohan',
+//               style: TextStyle(
+//                 fontSize: 22,
+//                 fontWeight: FontWeight.w700,
+//                 color: Color(0xFF1A1A2E),
+//               ),
+//             ),
+//             SizedBox(height: 2),
+//             Text(
+//               'Monday, Nov 1',
+//               style: TextStyle(
+//                 fontSize: 13,
+//                 color: Color(0xFF9A9AB0),
+//               ),
+//             ),
+//           ],
+//         ),
+//         Row(
+//           children: [
+//             // Streak chip
+//             Container(
+//               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+//               decoration: BoxDecoration(
+//                 color: Colors.white,
+//                 borderRadius: BorderRadius.circular(20),
+//                 boxShadow: [
+//                   BoxShadow(
+//                     color: Colors.black.withOpacity(0.06),
+//                     blurRadius: 8,
+//                     offset: const Offset(0, 2),
+//                   )
+//                 ],
+//               ),
+//               child: const Row(
+//                 children: [
+//                   Icon(Icons.local_fire_department,
+//                       color: Color(0xFFFF6B35), size: 16),
+//                   SizedBox(width: 4),
+//                   Column(
+//                     crossAxisAlignment: CrossAxisAlignment.start,
+//                     children: [
+//                       Text('Streak',
+//                           style: TextStyle(
+//                               fontSize: 10,
+//                               color: Color(0xFF9A9AB0),
+//                               fontWeight: FontWeight.w500)),
+//                       Text('1 Days',
+//                           style: TextStyle(
+//                               fontSize: 11,
+//                               fontWeight: FontWeight.w700,
+//                               color: Color(0xFF1A1A2E))),
+//                     ],
+//                   ),
+//                 ],
+//               ),
+//             ),
+//             const SizedBox(width: 10),
+//             // Bell
+//             Container(
+//               width: 38,
+//               height: 38,
+//               decoration: BoxDecoration(
+//                 color: Colors.white,
+//                 shape: BoxShape.circle,
+//                 boxShadow: [
+//                   BoxShadow(
+//                     color: Colors.black.withOpacity(0.06),
+//                     blurRadius: 8,
+//                     offset: const Offset(0, 2),
+//                   )
+//                 ],
+//               ),
+//               child: Stack(
+//                 children: [
+//                   const Center(
+//                     child: Icon(Icons.notifications_outlined,
+//                         color: Color(0xFF1A1A2E), size: 20),
+//                   ),
+//                   Positioned(
+//                     top: 7,
+//                     right: 7,
+//                     child: Container(
+//                       width: 8,
+//                       height: 8,
+//                       decoration: const BoxDecoration(
+//                         color: Color(0xFFFF3B30),
+//                         shape: BoxShape.circle,
+//                       ),
+//                     ),
+//                   )
+//                 ],
+//               ),
+//             ),
+//           ],
+//         ),
+//       ],
+//     );
+//   }
+// }
+
+// ─────────────────────────────────────────
+//  SEARCH BAR
+// // ─────────────────────────────────────────
+// class _SearchBar extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       height: 46,
+//       decoration: BoxDecoration(
+//         color: Colors.white,
+//         borderRadius: BorderRadius.circular(14),
+//         boxShadow: [
+//           BoxShadow(
+//             color: Colors.black.withOpacity(0.05),
+//             blurRadius: 8,
+//             offset: const Offset(0, 2),
+//           )
+//         ],
+//       ),
+//       child: const TextField(
+//         decoration: InputDecoration(
+//           fillColor: AppColors.white,
+//           filled: true,
+//           hintText: 'Search...',
+          
+//           hintStyle: TextStyle(color: AppColors.black, fontSize: 14),
+//           prefixIcon: Icon(Icons.search, color: Color(0xFFB0B0C8), size: 20),
+//           border: InputBorder.none,
+//           contentPadding: EdgeInsets.symmetric(vertical: 13),
+//         ),
+//       ),
+//     );
+//   }
+// }
 class _SearchBar extends StatelessWidget {
+  const _SearchBar();
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 46,
+      height: 48,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(14),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.05),
-            blurRadius: 8,
-            offset: const Offset(0, 2),
-          )
+            blurRadius: 10,
+            offset: const Offset(0, 3),
+          ),
         ],
       ),
       child: const TextField(
+        textAlignVertical: TextAlignVertical.center,
         decoration: InputDecoration(
-          fillColor: AppColors.white,
-          filled: true,
-          hintText: 'Search...',
-          
-          hintStyle: TextStyle(color: AppColors.black, fontSize: 14),
-          prefixIcon: Icon(Icons.search, color: Color(0xFFB0B0C8), size: 20),
+          hintText: 'Search workout, trainer...',
+          hintStyle: TextStyle(
+            color: Color(0xFFB0B0C8),
+            fontSize: 14,
+          ),
+          prefixIcon: Icon(
+            Icons.search,
+            color: Color(0xFFB0B0C8),
+          ),
           border: InputBorder.none,
-          contentPadding: EdgeInsets.symmetric(vertical: 13),
+          isCollapsed: true,
+          contentPadding: EdgeInsets.symmetric(vertical: 14),
         ),
       ),
     );
   }
 }
-
 // ─────────────────────────────────────────
 //  TARGET CARD  (gradient banner)
 // ─────────────────────────────────────────
@@ -602,6 +755,38 @@ class _ProgramCard extends StatelessWidget {
                 ],
               ),
             ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+//notfication screen 
+class NotificationScreen extends StatelessWidget {
+  const NotificationScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: const Color(0xFFF5F6FA),
+      appBar: AppBar(
+        title: const Text("Notification"),
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
+        elevation: 0,
+      ),
+      body: ListView(
+        padding: const EdgeInsets.all(16),
+        children: const [
+          ListTile(
+            leading: Icon(Icons.fitness_center, color: Color(0xFF4CD964)),
+            title: Text("New Workout Available"),
+            subtitle: Text("Try your new full body workout"),
+          ),
+          ListTile(
+            leading: Icon(Icons.timer, color: Color(0xFF4CD964)),
+            title: Text("Reminder"),
+            subtitle: Text("Don’t forget today’s session"),
           ),
         ],
       ),
