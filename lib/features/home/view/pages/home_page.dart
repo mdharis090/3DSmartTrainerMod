@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:transformationtracker/features/profile/view/profile_screens.dart';
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -15,7 +16,7 @@ class _HomeScreenState extends State<HomeScreen> {
     Center(child: Text('Programs')),
     Center(child: Text('Activity')),
     Center(child: Text('Leaderboard')),
-    Center(child: Text('Profile')),
+    ProfileScreen(),
   ];
 
   @override
@@ -906,14 +907,14 @@ class _BottomNav extends StatelessWidget {
   final int selectedIndex;
   final ValueChanged<int> onTap;
 
-  const _BottomNav({required this.selectedIndex, required this.onTap});
+  _BottomNav({required this.selectedIndex, required this.onTap});
 
-  static const List<_NavItem> _items = [
+  final List<_NavItem> _items = [
     _NavItem(icon: Icons.home_rounded, label: 'Home'),
     _NavItem(icon: Icons.grid_view_rounded, label: 'Programs'),
     _NavItem(icon: Icons.bar_chart_rounded, label: 'Activity'),
     _NavItem(icon: Icons.emoji_events_rounded, label: 'Leaderboard'),
-    _NavItem(icon: Icons.person_rounded, label: 'Profile'),
+    const _NavItem(icon: Icons.person_rounded, label: 'Profile'),
   ];
 
   @override

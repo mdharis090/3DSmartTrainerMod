@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:transformationtracker/features/profile/view/edit_profile_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -104,7 +105,7 @@ class ProfileScreen extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (_) =>  EditProfileScreen(),
+                  builder: (_) =>  const EditProfileScreen(),
                 ),
               );
             },
