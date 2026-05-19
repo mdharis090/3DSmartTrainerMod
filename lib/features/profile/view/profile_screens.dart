@@ -8,120 +8,139 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[100],
-      body: Column(
-        children: [
-          // ================= HEADER =================
-          Container(
-            height: 180,
-            width: double.infinity,
-            decoration: const BoxDecoration(
-              color: Color(0xFFB6F245),
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(30),
-                bottomRight: Radius.circular(30),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            // ================= HEADER =================
+            Container(
+              height: 220,
+              width: double.infinity,
+              decoration: const BoxDecoration(
+                color: Color(0xFFB6F245),
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(30),
+                  bottomRight: Radius.circular(30),
+                ),
               ),
-            ),
-            child: SafeArea(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Text(
-                      "Profile",
-                      style: TextStyle(
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold,
+              child: SafeArea(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text(
+                        "Profile",
+                        style: TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
-                    IconButton(
-                      onPressed: () {},
-                      icon: const Icon(Icons.notifications_none),
-                    )
-                  ],
+                      IconButton(
+                        onPressed: () {},
+                        icon: const Icon(Icons.notifications_none),
+                      )
+                    ],
+                  ),
                 ),
               ),
             ),
-          ),
 
-          const SizedBox(height: -50),
+            // ================= OVERLAP SECTION =================
+            Transform.translate(
+              offset: const Offset(0, -60),
+              child: Column(
+                children: [
+                  // PROFILE CARD
+                  Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 20),
+                    padding: const EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(20),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.05),
+                          blurRadius: 10,
+                          spreadRadius: 2,
+                        )
+                      ],
+                    ),
+                    child: Column(
+                      children: [
+                        const CircleAvatar(
+                          radius: 40,
+                          backgroundImage: NetworkImage(
+                            "https://i.pravatar.cc/150?img=3",
+                          ),
+                        ),
+                        const SizedBox(height: 10),
+                        const Text(
+                          "Smith",
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const SizedBox(height: 5),
 
-          // ================= PROFILE CARD =================
-          Container(
-            margin: const EdgeInsets.symmetric(horizontal: 20),
-            padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(20),
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 10, vertical: 5),
+                          decoration: BoxDecoration(
+                            color: Colors.grey[200],
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: const Text("Level 2"),
+                        ),
+
+                        const SizedBox(height: 15),
+
+                        // ================= STATS =================
+                        const Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            _InfoBox(title: "60kg", subtitle: "Weight"),
+                            _InfoBox(title: "176cm", subtitle: "Height"),
+                            _InfoBox(title: "20", subtitle: "Age"),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  const SizedBox(height: 20),
+
+                  // ================= MENU =================
+                  _MenuItem(
+                    icon: Icons.edit,
+                    text: "Edit profile",
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => const EditProfileScreen(),
+                        ),
+                      );
+                    },
+                  ),
+
+                  _MenuItem(
+                    icon: Icons.subscriptions,
+                    text: "Subscription",
+                    onTap: () {},
+                  ),
+
+                  _MenuItem(
+                    icon: Icons.logout,
+                    text: "Logout",
+                    color: Colors.red,
+                    onTap: () {},
+                  ),
+                ],
+              ),
             ),
-            child: Column(
-              children: [
-                const CircleAvatar(
-                  radius: 40,
-                  backgroundImage: NetworkImage(
-                    "https://i.pravatar.cc/150?img=3",
-                  ),
-                ),
-                const SizedBox(height: 10),
-                const Text(
-                  "Smith !",
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const SizedBox(height: 5),
-                Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                  decoration: BoxDecoration(
-                    color: Colors.grey[200],
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: const Text("Level 2"),
-                ),
-                const SizedBox(height: 15),
-
-                // ================= STATS =================
-                const Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    _InfoBox(title: "60kg", subtitle: "Weight"),
-                    _InfoBox(title: "176cm", subtitle: "Height"),
-                    _InfoBox(title: "20", subtitle: "Year Age"),
-                  ],
-                ),
-              ],
-            ),
-          ),
-
-          const SizedBox(height: 20),
-
-          // ================= MENU =================
-          _MenuItem(
-            icon: Icons.edit,
-            text: "Edit profile",
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (_) =>  const EditProfileScreen(),
-                ),
-              );
-            },
-          ),
-          _MenuItem(
-            icon: Icons.subscriptions,
-            text: "Subscription",
-            onTap: () {},
-          ),
-          _MenuItem(
-            icon: Icons.logout,
-            text: "Logout",
-            color: Colors.red,
-            onTap: () {},
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -176,7 +195,10 @@ class _MenuItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       leading: Icon(icon, color: color ?? Colors.black),
-      title: Text(text, style: TextStyle(color: color ?? Colors.black)),
+      title: Text(
+        text,
+        style: TextStyle(color: color ?? Colors.black),
+      ),
       trailing: const Icon(Icons.arrow_forward_ios, size: 16),
       onTap: onTap,
     );
