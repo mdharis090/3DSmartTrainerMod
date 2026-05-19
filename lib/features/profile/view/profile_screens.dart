@@ -208,6 +208,7 @@
 import 'package:flutter/material.dart';
 import 'package:transformationtracker/core/constants/app_color.dart';
 import 'package:transformationtracker/features/profile/view/edit_profile_screen.dart';
+import 'package:transformationtracker/features/profile/view/image_picker.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -253,55 +254,77 @@ class ProfileScreen extends StatelessWidget {
                     ),
                     child: Column(
                       children: [
-                        Transform.translate(
-                            offset: const Offset(0, -30),
-                          child: Row(
-                            children: [
-                              const CircleAvatar(
-                                radius: 40,
-                                backgroundImage: NetworkImage(
-                                  "https://i.pravatar.cc/150?img=3",
-                                ),
-                                
-                              ),
-                               const SizedBox(width: 10),
-                        const Text(
-                          "Smith!", // exactly as in the provided image description
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            color: AppColors.black
-                          ),
-
+                        Row(
+                          children: [
+                            const ProfileImagePicker(),
+                            // const CircleAvatar(
+                            //   radius: 40,
+                            //   backgroundImage: NetworkImage(
+                            //     "https://i.pravatar.cc/150?img=3",
+                            //   ),
+                              
+                            // ),
+                             const SizedBox(width: 10),
+                                                const Text(
+                        "Smith!", // exactly as in the provided image description
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: AppColors.black
                         ),
-
-                      const SizedBox(width: 70),
-                      Container(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 10, vertical: 5),
-                          decoration: BoxDecoration(
-                            color: 
-                            const Color(0xFFB6F245).withOpacity(0.2),
-                           borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: const Text("Level 2",style: TextStyle(color: AppColors.black)),),
                         
-                      
-                            ],
-                          ),
+                                                ),
+                        
+                                              const SizedBox(width: 70),
+                                              Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 10, vertical: 5),
+                        decoration: BoxDecoration(
+                          color: 
+                          const Color(0xFFB6F245).withOpacity(0.2),
+                         borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: const Text("Level 2",style: TextStyle(color: AppColors.black)),),
+                                                
+                                              
+                          ],
                         ),
                        
                         // STATS ROW
-                        const Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            _InfoBox(title: "60kg", subtitle: "Weight"),
-                            Divider(),
-                            _InfoBox(title: "176cm", subtitle: "Height"),
-                             Divider(),
-                            _InfoBox(title: "20", subtitle: "Age"),
-                          ],
-                        ),
+                        // const Row(
+                        //   mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        //   children: [
+                        //     _InfoBox(title: "60kg", subtitle: "Weight"),
+
+                        //     _InfoBox(title: "176cm", subtitle: "Height"),
+                            
+                        //     _InfoBox(title: "20", subtitle: "Age"),
+                        //   ],
+                        // ),
+                        Row(
+  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+  children: [
+    const _InfoBox(title: "60kg", subtitle: "Weight"),
+    
+    // Vertical Divider
+    Container(
+      height: 40,
+      width: 1,
+      color: AppColors.background1,
+    ),
+
+    const _InfoBox(title: "176cm", subtitle: "Height"),
+
+    // Vertical Divider
+    Container(
+      height: 40,
+      width: 1,
+      color: AppColors.background1,
+    ),
+
+    const _InfoBox(title: "20", subtitle: "Age"),
+  ],
+)
                       ],
                     ),
                   ),
@@ -456,12 +479,13 @@ class _InfoBox extends StatelessWidget {
           style: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.bold,
+            color: AppColors.black
           ),
         ),
         const SizedBox(height: 5),
         Text(
           subtitle,
-          style: const TextStyle(color: Colors.grey),
+          style: const TextStyle(color:AppColors.black),
         ),
       ],
     );
